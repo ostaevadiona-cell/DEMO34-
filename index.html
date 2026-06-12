@@ -9,7 +9,7 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --red:#ff0033;--cyan:#00ffe7;--green:#39ff14;--orange:#ff8c00;
-      --dim:#0a0a0f;--card-bg:#0d0d18;
+      --dim:#0a0a0f;
       --glow-r:0 0 8px #ff0033,0 0 24px #ff003380;
       --glow-c:0 0 8px #00ffe7,0 0 24px #00ffe780;
       --glow-g:0 0 8px #39ff14,0 0 24px #39ff1480;
@@ -22,16 +22,13 @@
       background:repeating-linear-gradient(to bottom,transparent 0px,transparent 3px,rgba(0,0,0,.15) 3px,rgba(0,0,0,.15) 4px)}
     #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-    /* BOOT */
     #boot-screen{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:40px}
     #boot-lines{font-family:var(--mono);font-size:clamp(13px,2vw,16px);color:var(--green);line-height:1.7;
       text-shadow:var(--glow-g);white-space:pre-wrap;word-break:break-all;max-width:700px;width:100%}
 
-    /* MAIN */
     #main-screen{position:relative;z-index:10;min-height:100vh;display:flex;
       align-items:flex-start;justify-content:center;padding:40px 0 60px}
 
-    /* SIDEBARS */
     .sidebar{width:190px;min-width:150px;flex-shrink:0;display:flex;flex-direction:column;
       gap:8px;padding:60px 14px 0;opacity:0}
     .sidebar.left{animation:fadeL .6s .3s forwards}
@@ -62,11 +59,9 @@
     @keyframes blG{0%,100%{opacity:1;color:var(--green)}50%{opacity:.2}}
     @keyframes blS{0%,100%{opacity:1}50%{opacity:.3}}
 
-    /* CENTER */
     .center{flex:1;max-width:500px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 18px}
     .top-label{font-size:11px;letter-spacing:.3em;color:rgba(0,229,255,.55);opacity:0;animation:fadeU .5s .4s forwards}
 
-    /* PHOTO */
     .photo-wrap{position:relative;width:clamp(190px,42vw,300px);aspect-ratio:3/4;opacity:0;animation:photoIn .8s .6s forwards}
     @keyframes photoIn{from{opacity:0;transform:scale(.93);filter:brightness(.2)}to{opacity:1;transform:none;filter:brightness(1)}}
     .photo-ring{position:absolute;inset:-5px;border:2px solid var(--red);z-index:2;
@@ -107,7 +102,6 @@
     .err{font-size:11px;color:var(--red);text-shadow:var(--glow-r);letter-spacing:.15em;text-align:center;animation:shake .4s ease}
     @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
-    /* ACCESS SCREEN */
     #access-screen{position:relative;z-index:10;min-height:100vh;padding:50px 18px 80px;
       display:flex;flex-direction:column;align-items:center;gap:24px;
       background:radial-gradient(ellipse at center,rgba(0,255,136,.05) 0%,transparent 70%)}
@@ -118,48 +112,31 @@
     @keyframes aPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
     .access-sub{font-size:clamp(10px,2vw,12px);letter-spacing:.22em;color:rgba(0,255,136,.45);text-align:center}
 
-    /* TIMER BLOCK */
-    .timer-block{
-      display:flex;flex-direction:column;align-items:center;gap:10px;
+    .timer-block{display:flex;flex-direction:column;align-items:center;gap:10px;
       border:1px solid rgba(255,0,51,.35);padding:24px 40px;
       background:rgba(255,0,51,.04);
       box-shadow:0 0 30px rgba(255,0,51,.1),inset 0 0 20px rgba(255,0,51,.05);
-      animation:fadeU .6s .4s both;
-      position:relative;overflow:hidden;
-    }
-    .timer-block::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:1px;
-      background:linear-gradient(90deg,transparent,var(--red),transparent);
-    }
+      animation:fadeU .6s .4s both;position:relative;overflow:hidden;}
+    .timer-block::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--red),transparent);}
     .timer-label{font-size:11px;letter-spacing:.3em;color:rgba(255,0,51,.6)}
-    .timer-digits{
-      font-family:var(--orb);font-size:clamp(28px,8vw,56px);font-weight:900;
+    .timer-digits{font-family:var(--orb);font-size:clamp(28px,8vw,56px);font-weight:900;
       color:var(--red);text-shadow:var(--glow-r);letter-spacing:.08em;
-      animation:timerPulse 1s ease-in-out infinite alternate;
-    }
+      animation:timerPulse 1s ease-in-out infinite alternate;}
     @keyframes timerPulse{
       from{text-shadow:0 0 10px var(--red),0 0 30px rgba(255,0,51,.4)}
-      to{text-shadow:0 0 20px var(--red),0 0 60px rgba(255,0,51,.7),0 0 100px rgba(255,0,51,.3)}
-    }
+      to{text-shadow:0 0 20px var(--red),0 0 60px rgba(255,0,51,.7),0 0 100px rgba(255,0,51,.3)}}
     .timer-sub{font-size:10px;letter-spacing:.2em;color:rgba(255,0,51,.45)}
 
-    /* CIPHER BLOCK */
-    .cipher-block{
-      display:flex;flex-direction:column;align-items:center;gap:12px;
+    .cipher-block{display:flex;flex-direction:column;align-items:center;gap:12px;
       border:1px solid rgba(0,229,255,.15);padding:20px 30px;
-      background:rgba(0,229,255,.03);
-      animation:fadeU .6s .7s both;
-      max-width:500px;width:100%;
-    }
+      background:rgba(0,229,255,.03);animation:fadeU .6s .7s both;max-width:500px;width:100%;}
     .cipher-label{font-size:10px;letter-spacing:.3em;color:rgba(0,229,255,.4)}
-    .cipher-text{
-      font-family:var(--mono);font-size:clamp(11px,2.5vw,14px);
+    .cipher-text{font-family:var(--mono);font-size:clamp(11px,2.5vw,14px);
       color:rgba(0,229,255,.7);letter-spacing:.15em;text-align:center;line-height:2;
-      text-shadow:0 0 8px rgba(0,229,255,.3);
-    }
+      text-shadow:0 0 8px rgba(0,229,255,.3);}
     .cipher-hint{font-size:10px;letter-spacing:.2em;color:rgba(0,229,255,.25);font-style:italic}
 
-    /* CARDS */
     .archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;width:100%;max-width:880px}
     .archive-card{position:relative;background:rgba(0,18,12,.92);border:1px solid rgba(0,255,136,.2);
       padding:20px 18px 36px;overflow:hidden;opacity:0;animation:cardIn .5s var(--d,0s) forwards;
@@ -195,7 +172,6 @@
 <canvas id="particles"></canvas>
 <div class="scanlines"></div>
 
-<!-- MAIN LOGIN -->
 <div id="main-screen" class="hidden">
   <div class="sidebar left">
     <div class="si"><span class="br">●</span> ACCESS DENIED</div>
@@ -238,19 +214,16 @@
   </div>
 </div>
 
-<!-- ACCESS SCREEN -->
 <div id="access-screen" class="hidden">
   <div class="access-title">✔ ДОСТУП РАЗРЕШЁН</div>
   <div class="access-sub">ДОБРО ПОЖАЛОВАТЬ В АРХИВ DEMO34</div>
 
-  <!-- TIMER -->
   <div class="timer-block">
-    <div class="timer-label">▸ СЛЕДУЮЩИЙ ЭТАП ЧЕРЕЗ</div>
+    <div class="timer-label" id="timer-label">▸ СЛЕДУЮЩИЙ ЭТАП ЧЕРЕЗ</div>
     <div class="timer-digits" id="timer-display">00:00:00:00</div>
     <div class="timer-sub">ДНИ : ЧАСЫ : МИНУТЫ : СЕКУНДЫ</div>
   </div>
 
-  <!-- CIPHER -->
   <div class="cipher-block">
     <div class="cipher-label">⟨ ЗАШИФРОВАННОЕ СООБЩЕНИЕ ⟩</div>
     <div class="cipher-text">
@@ -262,7 +235,6 @@
     <div class="cipher-hint">// СЛЕДУЮЩИЙ ЭТАП СКОРО //</div>
   </div>
 
-  <!-- ARCHIVE CARDS -->
   <div class="archive-grid">
     <div class="archive-card" style="--d:.1s">
       <div class="card-lbl">ФАЙЛ #001</div>
@@ -306,8 +278,17 @@
 </div>
 
 <script>
+// ── SHA-256 (pure JS) ──
+async function sha256(msg){
+  const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+const SALT="demo34_x9k";
+const CORRECT_HASH="4e4b1ca5bd004616481da2ebbccff4087f23407cd6834340b742875a022a0965";
+
 // ── BOOT ──
-const LINES = [
+const LINES=[
   "INITIALIZING SECURE KERNEL...","LOADING ENCRYPTED MODULES...",
   "CHECKING INTEGRITY: [████████████] 100%","ESTABLISHING SECURE CHANNEL...",
   "FIREWALL STATUS: ACTIVE","THREAT DETECTION: ARMED",
@@ -315,7 +296,7 @@ const LINES = [
   "WARNING: UNAUTHORIZED ACCESS IS A FEDERAL OFFENSE",
   "LOADING CLASSIFIED DATABASE...","FILE: DEMO34.DAT — FOUND",
   "DECRYPTING HEADER... DONE","AUTHORIZATION REQUIRED FOR FULL ACCESS",
-  "",">" + " SYSTEM READY. AWAITING CREDENTIALS."
+  "","> SYSTEM READY. AWAITING CREDENTIALS."
 ];
 let bi=0;
 const bootEl=document.getElementById("boot-lines");
@@ -323,7 +304,7 @@ const bootSc=document.getElementById("boot-screen");
 const mainSc=document.getElementById("main-screen");
 
 function typeLine(text,cb){
-  let i=0; const line=document.createElement("div"); bootEl.appendChild(line);
+  let i=0;const line=document.createElement("div");bootEl.appendChild(line);
   if(!text){line.innerHTML="&nbsp;";setTimeout(cb,80);return;}
   const t=setInterval(()=>{line.textContent+=text[i++];if(i>=text.length){clearInterval(t);setTimeout(cb,55);}},20);
 }
@@ -369,12 +350,14 @@ function startParticles(){
   draw();
 }
 
-// ── PASSWORD ──
-function checkPassword(){
-  const val=document.getElementById("password-input").value.trim().toUpperCase();
+// ── PASSWORD (hashed) ──
+async function checkPassword(){
+  const val=document.getElementById("password-input").value.trim().toLowerCase();
   const err=document.getElementById("error-msg");
-  if(val==="DIVIAR"){err.classList.add("hidden");showAccess();}
-  else{
+  const hash=await sha256(SALT+val);
+  if(hash===CORRECT_HASH){
+    err.classList.add("hidden");showAccess();
+  } else {
     err.classList.remove("hidden");err.style.animation="none";
     requestAnimationFrame(()=>{err.style.animation="";});
     document.getElementById("password-input").value="";
@@ -388,46 +371,35 @@ document.addEventListener("keydown",e=>{
 function showAccess(){
   mainSc.classList.add("hidden");
   const sc=document.getElementById("access-screen");
-  sc.classList.remove("hidden");
-  sc.style.opacity="0";sc.style.transition="opacity .7s";
+  sc.classList.remove("hidden");sc.style.opacity="0";sc.style.transition="opacity .7s";
   requestAnimationFrame(()=>requestAnimationFrame(()=>{sc.style.opacity="1";}));
   startTimer();
 }
 
-// ── COUNTDOWN TIMER — 67 hours from first visit ──
-// Deadline stored in localStorage so it persists across refreshes
+// ── TIMER — fixed deadline for ALL users ──
 function startTimer(){
-  const KEY = "demo34_deadline";
-  let deadline = localStorage.getItem(KEY);
-  if(!deadline){
-    deadline = Date.now() + 67 * 60 * 60 * 1000;
-    localStorage.setItem(KEY, deadline);
-  } else {
-    deadline = parseInt(deadline);
-  }
-
-  const el = document.getElementById("timer-display");
+  const deadline=new Date("2026-06-16T13:16:00Z").getTime();
+  const el=document.getElementById("timer-display");
+  const lbl=document.getElementById("timer-label");
 
   function update(){
-    const now = Date.now();
-    const diff = deadline - now;
-    if(diff <= 0){
-      el.textContent = "00:00:00:00";
-      el.style.color = "#555";
-      el.style.textShadow = "none";
-      document.querySelector(".timer-label").textContent = "▸ ВРЕМЯ ИСТЕКЛО";
+    const diff=deadline-Date.now();
+    if(diff<=0){
+      el.textContent="00:00:00:00";
+      el.style.color="#555";el.style.textShadow="none";
+      lbl.textContent="▸ ВРЕМЯ ИСТЕКЛО";
       return;
     }
-    const days    = Math.floor(diff / (1000*60*60*24));
-    const hours   = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((diff % (1000*60)) / 1000);
-    el.textContent =
-      String(days).padStart(2,"0") + ":" +
-      String(hours).padStart(2,"0") + ":" +
-      String(minutes).padStart(2,"0") + ":" +
-      String(seconds).padStart(2,"0");
-    setTimeout(update, 1000);
+    const days=Math.floor(diff/(1000*60*60*24));
+    const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const mins=Math.floor((diff%(1000*60*60))/(1000*60));
+    const secs=Math.floor((diff%(1000*60))/1000);
+    el.textContent=
+      String(days).padStart(2,"0")+":"+
+      String(hours).padStart(2,"0")+":"+
+      String(mins).padStart(2,"0")+":"+
+      String(secs).padStart(2,"0");
+    setTimeout(update,1000);
   }
   update();
 }
