@@ -7,25 +7,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --red:#ff0033;--cyan:#00ffe7;--green:#39ff14;--orange:#ff8c00;--dim:#0a0a0f;
-      --glow-r:0 0 8px #ff0033,0 0 24px #ff003380;
-      --glow-c:0 0 8px #00ffe7,0 0 24px #00ffe780;
-      --glow-g:0 0 8px #39ff14,0 0 24px #39ff1480;
-      --mono:"Share Tech Mono",monospace;--orb:"Orbitron",sans-serif;
-    }
+    :root{--red:#ff0033;--cyan:#00ffe7;--green:#39ff14;--orange:#ff8c00;--dim:#0a0a0f;
+      --glow-r:0 0 8px #ff0033,0 0 24px #ff003380;--glow-c:0 0 8px #00ffe7,0 0 24px #00ffe780;
+      --glow-g:0 0 8px #39ff14,0 0 24px #39ff1480;--mono:"Share Tech Mono",monospace;--orb:"Orbitron",sans-serif;}
     html,body{width:100%;min-height:100%;background:var(--dim);color:var(--cyan);font-family:var(--mono);overflow-x:hidden}
     .hidden{display:none!important}
-    .scanlines{pointer-events:none;position:fixed;inset:0;z-index:9998;
-      background:repeating-linear-gradient(to bottom,transparent 0px,transparent 3px,rgba(0,0,0,.15) 3px,rgba(0,0,0,.15) 4px)}
+    .scanlines{pointer-events:none;position:fixed;inset:0;z-index:9998;background:repeating-linear-gradient(to bottom,transparent 0px,transparent 3px,rgba(0,0,0,.15) 3px,rgba(0,0,0,.15) 4px)}
     #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
     #boot-screen{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:40px}
-    #boot-lines{font-family:var(--mono);font-size:clamp(13px,2vw,16px);color:var(--green);line-height:1.7;
-      text-shadow:var(--glow-g);white-space:pre-wrap;word-break:break-all;max-width:700px;width:100%}
+    #boot-lines{font-family:var(--mono);font-size:clamp(13px,2vw,16px);color:var(--green);line-height:1.7;text-shadow:var(--glow-g);white-space:pre-wrap;word-break:break-all;max-width:700px;width:100%}
     #main-screen{position:relative;z-index:10;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:40px 0 60px}
     .sidebar{width:190px;min-width:150px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;padding:60px 14px 0;opacity:0}
-    .sidebar.left{animation:fadeL .6s .3s forwards}
-    .sidebar.right{animation:fadeR .6s .5s forwards}
+    .sidebar.left{animation:fadeL .6s .3s forwards}.sidebar.right{animation:fadeR .6s .5s forwards}
     @keyframes fadeL{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
     @keyframes fadeR{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
     .si{font-size:12px;letter-spacing:.08em;padding:5px 8px;border-left:2px solid transparent;opacity:0;animation:fadeU .4s forwards}
@@ -34,86 +27,61 @@
     .sidebar.left .si:nth-child(1){animation-delay:.5s;border-color:var(--red)!important;color:var(--red);text-shadow:var(--glow-r)}
     .sidebar.left .si:nth-child(2){animation-delay:.7s;border-color:#8b0000!important;color:#ff6677}
     .sidebar.left .si:nth-child(3){animation-delay:.9s;border-color:var(--red)!important;color:var(--red);text-shadow:var(--glow-r)}
-    .sidebar.left .si:nth-child(5){animation-delay:1.1s}
-    .sidebar.left .si:nth-child(6){animation-delay:1.3s}
-    .sidebar.left .si:nth-child(7){animation-delay:1.5s}
+    .sidebar.left .si:nth-child(5){animation-delay:1.1s}.sidebar.left .si:nth-child(6){animation-delay:1.3s}.sidebar.left .si:nth-child(7){animation-delay:1.5s}
     .sidebar.right .si:nth-child(1){animation-delay:.6s;border-color:var(--green)!important;color:var(--green);text-shadow:var(--glow-g)}
     .sidebar.right .si:nth-child(2){animation-delay:.8s;border-color:#005533!important;color:#88ffcc}
     .sidebar.right .si:nth-child(3){animation-delay:1.0s;border-color:var(--green)!important;color:var(--green);text-shadow:var(--glow-g)}
-    .sidebar.right .si:nth-child(5){animation-delay:1.2s}
-    .sidebar.right .si:nth-child(6){animation-delay:1.4s}
-    .sidebar.right .si:nth-child(7){animation-delay:1.6s}
+    .sidebar.right .si:nth-child(5){animation-delay:1.2s}.sidebar.right .si:nth-child(6){animation-delay:1.4s}.sidebar.right .si:nth-child(7){animation-delay:1.6s}
     @keyframes fadeU{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
     .br{animation:blR 1s step-end infinite}.bg{animation:blG 1.2s step-end infinite}.bs{animation:blS 2.5s step-end infinite}
-    @keyframes blR{0%,100%{opacity:1;color:var(--red)}50%{opacity:.2}}
-    @keyframes blG{0%,100%{opacity:1;color:var(--green)}50%{opacity:.2}}
-    @keyframes blS{0%,100%{opacity:1}50%{opacity:.3}}
+    @keyframes blR{0%,100%{opacity:1;color:var(--red)}50%{opacity:.2}}@keyframes blG{0%,100%{opacity:1;color:var(--green)}50%{opacity:.2}}@keyframes blS{0%,100%{opacity:1}50%{opacity:.3}}
     .center{flex:1;max-width:500px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 18px}
     .top-label{font-size:11px;letter-spacing:.3em;color:rgba(0,229,255,.55);opacity:0;animation:fadeU .5s .4s forwards}
     .photo-wrap{position:relative;width:clamp(190px,42vw,300px);aspect-ratio:3/4;opacity:0;animation:photoIn .8s .6s forwards}
     @keyframes photoIn{from{opacity:0;transform:scale(.93);filter:brightness(.2)}to{opacity:1;transform:none;filter:brightness(1)}}
-    .photo-ring{position:absolute;inset:-5px;border:2px solid var(--red);z-index:2;
-      box-shadow:0 0 20px var(--red),inset 0 0 18px rgba(255,34,68,.1);animation:ringP 3s ease-in-out infinite}
+    .photo-ring{position:absolute;inset:-5px;border:2px solid var(--red);z-index:2;box-shadow:0 0 20px var(--red);animation:ringP 3s ease-in-out infinite}
     @keyframes ringP{0%,100%{box-shadow:0 0 15px var(--red)}50%{box-shadow:0 0 35px var(--red)}}
     .photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.1) saturate(.75);position:relative;z-index:1}
     .photo-classified{position:absolute;top:10px;left:0;right:0;text-align:center;font-family:var(--orb);font-size:10px;letter-spacing:.4em;color:rgba(255,34,68,.65);z-index:3;text-shadow:0 0 10px var(--red)}
     .scan-anim{position:absolute;left:0;right:0;height:8px;z-index:4;background:linear-gradient(to bottom,transparent,rgba(0,229,255,.28),transparent);animation:scanM 2.5s linear infinite}
     @keyframes scanM{from{top:-5%}to{top:105%}}
-    h1.demo{font-family:var(--orb);font-size:clamp(38px,10vw,70px);font-weight:900;letter-spacing:.12em;color:var(--red);
-      text-shadow:0 0 20px var(--red),0 0 55px rgba(255,34,68,.4);text-align:center;opacity:0;animation:flicker .6s 1s forwards}
+    h1.demo{font-family:var(--orb);font-size:clamp(38px,10vw,70px);font-weight:900;letter-spacing:.12em;color:var(--red);text-shadow:0 0 20px var(--red),0 0 55px rgba(255,34,68,.4);text-align:center;opacity:0;animation:flicker .6s 1s forwards}
     @keyframes flicker{0%{opacity:0}30%{opacity:.8}40%{opacity:.2}60%{opacity:.9}70%{opacity:.3}100%{opacity:1}}
     .sub{font-size:clamp(9px,2vw,11px);letter-spacing:.18em;color:rgba(200,220,230,.4);text-align:center;opacity:0;animation:fadeU .5s 1.3s forwards}
     .inp-wrap{position:relative;width:100%;max-width:330px;opacity:0;animation:fadeU .5s 1.4s forwards}
-    #password-input{width:100%;background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.3);color:var(--cyan);
-      font-family:var(--mono);font-size:18px;letter-spacing:.35em;text-align:center;padding:13px 18px;outline:none;transition:border-color .3s,box-shadow .3s}
+    #password-input{width:100%;background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.3);color:var(--cyan);font-family:var(--mono);font-size:18px;letter-spacing:.35em;text-align:center;padding:13px 18px;outline:none;transition:border-color .3s,box-shadow .3s}
     #password-input:focus{border-color:var(--cyan);box-shadow:0 0 18px rgba(0,229,255,.22)}
     #password-input::placeholder{color:rgba(0,229,255,.28);letter-spacing:.4em}
     .inp-line{position:absolute;bottom:0;left:0;height:2px;width:0;background:var(--cyan);transition:width .3s}
     #password-input:focus~.inp-line{width:100%}
-    #enter-btn{position:relative;font-family:var(--orb);font-size:13px;font-weight:700;letter-spacing:.28em;color:#000;
-      background:var(--green);border:none;padding:13px 46px;cursor:pointer;
-      clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
-      overflow:hidden;opacity:0;animation:fadeU .5s 1.5s forwards;transition:background .2s,transform .1s}
-    #enter-btn:hover{background:#00ffaa;transform:scale(1.04)}
-    #enter-btn:active{transform:scale(.97)}
+    #enter-btn{position:relative;font-family:var(--orb);font-size:13px;font-weight:700;letter-spacing:.28em;color:#000;background:var(--green);border:none;padding:13px 46px;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);overflow:hidden;opacity:0;animation:fadeU .5s 1.5s forwards;transition:background .2s,transform .1s}
+    #enter-btn:hover{background:#00ffaa;transform:scale(1.04)}#enter-btn:active{transform:scale(.97)}
     .btn-gl{position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);opacity:0;transition:opacity .3s}
     #enter-btn:hover .btn-gl{opacity:1}
     .err{font-size:11px;color:var(--red);text-shadow:var(--glow-r);letter-spacing:.15em;text-align:center;animation:shake .4s ease}
     @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-    #access-screen{position:relative;z-index:10;min-height:100vh;padding:50px 18px 80px;
-      display:flex;flex-direction:column;align-items:center;gap:24px;
-      background:radial-gradient(ellipse at center,rgba(0,255,136,.05) 0%,transparent 70%)}
-    .access-title{font-family:var(--orb);font-size:clamp(22px,6vw,46px);font-weight:900;color:var(--green);
-      text-shadow:0 0 28px var(--green),0 0 55px rgba(0,255,136,.45);letter-spacing:.14em;text-align:center;
-      animation:aPop .7s cubic-bezier(.17,.89,.32,1.27) forwards}
+    #access-screen{position:relative;z-index:10;min-height:100vh;padding:50px 18px 80px;display:flex;flex-direction:column;align-items:center;gap:24px;background:radial-gradient(ellipse at center,rgba(0,255,136,.05) 0%,transparent 70%)}
+    .access-title{font-family:var(--orb);font-size:clamp(22px,6vw,46px);font-weight:900;color:var(--green);text-shadow:0 0 28px var(--green),0 0 55px rgba(0,255,136,.45);letter-spacing:.14em;text-align:center;animation:aPop .7s cubic-bezier(.17,.89,.32,1.27) forwards}
     @keyframes aPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
     .access-sub{font-size:clamp(10px,2vw,12px);letter-spacing:.22em;color:rgba(0,255,136,.45);text-align:center}
-    .timer-block{display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid rgba(255,0,51,.35);
-      padding:24px 40px;background:rgba(255,0,51,.04);box-shadow:0 0 30px rgba(255,0,51,.1);
-      animation:fadeU .6s .4s both;position:relative;overflow:hidden;}
+    .timer-block{display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid rgba(255,0,51,.35);padding:24px 40px;background:rgba(255,0,51,.04);box-shadow:0 0 30px rgba(255,0,51,.1);animation:fadeU .6s .4s both;position:relative;overflow:hidden;}
     .timer-block::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
     .timer-label{font-size:11px;letter-spacing:.3em;color:rgba(255,0,51,.6)}
-    .timer-digits{font-family:var(--orb);font-size:clamp(28px,8vw,56px);font-weight:900;color:var(--red);
-      text-shadow:var(--glow-r);letter-spacing:.08em;animation:timerPulse 1s ease-in-out infinite alternate;}
+    .timer-digits{font-family:var(--orb);font-size:clamp(28px,8vw,56px);font-weight:900;color:var(--red);text-shadow:var(--glow-r);letter-spacing:.08em;animation:timerPulse 1s ease-in-out infinite alternate;}
     @keyframes timerPulse{from{text-shadow:0 0 10px var(--red),0 0 30px rgba(255,0,51,.4)}to{text-shadow:0 0 20px var(--red),0 0 60px rgba(255,0,51,.7)}}
     .timer-sub{font-size:10px;letter-spacing:.2em;color:rgba(255,0,51,.45)}
-    .cipher-block{display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(0,229,255,.15);
-      padding:20px 30px;background:rgba(0,229,255,.03);animation:fadeU .6s .7s both;max-width:500px;width:100%;}
+    .cipher-block{display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(0,229,255,.15);padding:20px 30px;background:rgba(0,229,255,.03);animation:fadeU .6s .7s both;max-width:500px;width:100%;}
     .cipher-label{font-size:10px;letter-spacing:.3em;color:rgba(0,229,255,.4)}
-    .cipher-text{font-family:var(--mono);font-size:clamp(11px,2.5vw,14px);color:rgba(0,229,255,.7);
-      letter-spacing:.15em;text-align:center;line-height:2;text-shadow:0 0 8px rgba(0,229,255,.3);}
+    .cipher-text{font-family:var(--mono);font-size:clamp(11px,2.5vw,14px);color:rgba(0,229,255,.7);letter-spacing:.15em;text-align:center;line-height:2;text-shadow:0 0 8px rgba(0,229,255,.3);}
     .cipher-hint{font-size:10px;letter-spacing:.2em;color:rgba(0,229,255,.25);font-style:italic}
     .archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;width:100%;max-width:880px}
-    .archive-card{position:relative;background:rgba(0,18,12,.92);border:1px solid rgba(0,255,136,.2);
-      padding:20px 18px 36px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+    .archive-card{position:relative;background:rgba(0,18,12,.92);border:1px solid rgba(0,255,136,.2);padding:20px 18px 36px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
     .archive-card:hover{border-color:rgba(0,255,136,.55);box-shadow:0 0 18px rgba(0,255,136,.12)}
     .card-lbl{font-size:10px;letter-spacing:.28em;color:rgba(0,255,136,.45);margin-bottom:5px}
     .card-ttl{font-family:var(--orb);font-size:13px;font-weight:700;color:#e8f4f8;letter-spacing:.1em;margin-bottom:10px}
     .card-txt{font-size:12px;line-height:1.8;color:rgba(200,220,230,.6)}
-    .card-stamp{position:absolute;bottom:9px;right:11px;font-family:var(--orb);font-size:9px;font-weight:700;
-      letter-spacing:.18em;color:rgba(255,34,68,.4);border:1px solid rgba(255,34,68,.22);padding:2px 7px;transform:rotate(-3deg)}
-    .logout-btn{font-family:var(--mono);font-size:12px;letter-spacing:.28em;color:rgba(200,220,230,.38);
-      background:none;border:1px solid rgba(200,220,230,.14);padding:10px 28px;cursor:pointer;transition:color .3s,border-color .3s;margin-top:8px}
+    .card-stamp{position:absolute;bottom:9px;right:11px;font-family:var(--orb);font-size:9px;font-weight:700;letter-spacing:.18em;color:rgba(255,34,68,.4);border:1px solid rgba(255,34,68,.22);padding:2px 7px;transform:rotate(-3deg)}
+    .logout-btn{font-family:var(--mono);font-size:12px;letter-spacing:.28em;color:rgba(200,220,230,.38);background:none;border:1px solid rgba(200,220,230,.14);padding:10px 28px;cursor:pointer;transition:color .3s,border-color .3s;margin-top:8px}
     .logout-btn:hover{color:var(--red);border-color:var(--red)}
     @media(max-width:768px){
       #main-screen{flex-direction:column;align-items:center;padding:16px 0 40px}
@@ -151,10 +119,10 @@
     <h1 class="demo">DEMO34</h1>
     <p class="sub">ВВЕДИ КОД ДОСТУПА ДЛЯ ВХОДА В АРХИВ</p>
     <div class="inp-wrap">
-      <input type="password" id="password-input" placeholder="_ _ _ _ _ _" maxlength="20" autocomplete="off"/>
+      <input type="password" id="password-input" placeholder="_ _ _ _ _ _" maxlength="50" autocomplete="off"/>
       <div class="inp-line"></div>
     </div>
-    <button id="enter-btn" onclick="checkPassword()">
+    <button id="enter-btn" onclick="window._chk()">
       <span>ВОЙТИ</span><span class="btn-gl"></span>
     </button>
     <p class="err hidden" id="error-msg">⛔ ДОСТУП ЗАПРЕЩЁН — НЕВЕРНЫЙ КОД</p>
@@ -184,31 +152,128 @@
     <div class="cipher-hint" id="cipher-hint"></div>
   </div>
   <div class="archive-grid" id="archive-grid"></div>
-  <button class="logout-btn" onclick="logout()">[ ВЫЙТИ ИЗ СИСТЕМЫ ]</button>
+  <button class="logout-btn" onclick="window._out()">[ ВЫЙТИ ИЗ СИСТЕМЫ ]</button>
 </div>
 
 <script>
-// ── ENCRYPTED ARCHIVE DATA (AES-256-GCM) ──
+// Всё обёрнуто в IIFE — ни одна функция недоступна из консоли
+(function(){
+'use strict';
+
+// Зашифрованные данные архива (AES-256-GCM)
 const _s="ZGVtbzM0X2FyY19zYWx0X3g5";
-const _n="urV6w90BvLLZFOdr";
-const _c="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";
+const _n="LoGS6VddFOGEP5qT";
+const _c="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";
 
-function b64ToBytes(b64){const bin=atob(b64);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return bytes;}
+// Флаг валидного входа — без него showAccess ничего не делает
+let _validated = false;
+let _attempts = 0;
+let _blocked = false;
 
-async function decryptArchive(password){
-  const enc=new TextEncoder();
-  const keyMaterial=await crypto.subtle.importKey("raw",enc.encode(password),{name:"PBKDF2"},false,["deriveKey"]);
-  const key=await crypto.subtle.deriveKey(
-    {name:"PBKDF2",salt:b64ToBytes(_s),iterations:100000,hash:"SHA-256"},
-    keyMaterial,{name:"AES-GCM",length:256},false,["decrypt"]
-  );
-  const decrypted=await crypto.subtle.decrypt(
-    {name:"AES-GCM",iv:b64ToBytes(_n)},key,b64ToBytes(_c)
-  );
-  return JSON.parse(new TextDecoder().decode(decrypted));
+function _b2b(b64){
+  const bin=atob(b64);const b=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)b[i]=bin.charCodeAt(i);return b;
 }
 
-// ── BOOT ──
+async function _decrypt(pwd){
+  const enc=new TextEncoder();
+  const km=await crypto.subtle.importKey("raw",enc.encode(pwd),{name:"PBKDF2"},false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey(
+    {name:"PBKDF2",salt:_b2b(_s),iterations:100000,hash:"SHA-256"},
+    km,{name:"AES-GCM",length:256},false,["decrypt"]
+  );
+  const dec=await crypto.subtle.decrypt({name:"AES-GCM",iv:_b2b(_n)},key,_b2b(_c));
+  return JSON.parse(new TextDecoder().decode(dec));
+}
+
+function _render(data){
+  if(!_validated)return;
+  document.getElementById("cipher-text").innerHTML=data.cipher.replace(/\n/g,"<br>");
+  document.getElementById("cipher-hint").textContent=data.cipher_hint;
+  const grid=document.getElementById("archive-grid");
+  grid.innerHTML="";
+  const delays=[.1,.25,.4,.55,.7,.85];
+  data.cards.forEach((c,i)=>{
+    const card=document.createElement("div");
+    card.className="archive-card";
+    card.style.cssText=`opacity:0;animation:cardIn .5s ${delays[i]||.1}s forwards`;
+    card.innerHTML=`<div class="card-lbl">${c.lbl}</div><div class="card-ttl">${c.ttl}</div><div class="card-txt">${c.txt}</div><div class="card-stamp">${c.stamp}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+function _show(){
+  if(!_validated)return;
+  const ms=document.getElementById("main-screen");
+  const sc=document.getElementById("access-screen");
+  ms.classList.add("hidden");
+  sc.classList.remove("hidden");sc.style.opacity="0";sc.style.transition="opacity .7s";
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{sc.style.opacity="1";}));
+  _timer();
+}
+
+async function _check(){
+  if(_blocked)return;
+  const val=document.getElementById("password-input").value.trim();
+  const err=document.getElementById("error-msg");
+  const btn=document.getElementById("enter-btn");
+  if(!val)return;
+  btn.disabled=true;
+  btn.querySelector("span").textContent="...";
+  try{
+    const data=await _decrypt(val);
+    _validated=true;
+    err.classList.add("hidden");
+    _render(data);
+    _show();
+    _validated=false;
+  }catch(e){
+    _attempts++;
+    err.classList.remove("hidden");
+    err.style.animation="none";
+    requestAnimationFrame(()=>{err.style.animation="";});
+    document.getElementById("password-input").value="";
+    if(_attempts>=15){
+      _blocked=true;
+      err.textContent="⛔ СИСТЕМА ЗАБЛОКИРОВАНА НА 1 ЧАС";
+      btn.style.opacity=".3";
+      setTimeout(()=>{_blocked=false;_attempts=0;btn.style.opacity="";err.textContent="⛔ ДОСТУП ЗАПРЕЩЁН — НЕВЕРНЫЙ КОД";},3600000);
+    }
+  }
+  btn.disabled=false;
+  btn.querySelector("span").textContent="ВОЙТИ";
+}
+
+function _timer(){
+  const deadline=new Date("2026-06-16T13:16:00Z").getTime();
+  const el=document.getElementById("timer-display");
+  const lbl=document.getElementById("timer-label");
+  function update(){
+    const diff=deadline-Date.now();
+    if(diff<=0){el.textContent="00:00:00:00";el.style.color="#555";el.style.textShadow="none";lbl.textContent="▸ ВРЕМЯ ИСТЕКЛО";return;}
+    const d=Math.floor(diff/(1000*60*60*24));
+    const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const m=Math.floor((diff%(1000*60*60))/(1000*60));
+    const s=Math.floor((diff%(1000*60))/1000);
+    el.textContent=String(d).padStart(2,"0")+":"+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+    setTimeout(update,1000);
+  }update();
+}
+
+function _logout(){
+  const sc=document.getElementById("access-screen");
+  sc.style.transition="opacity .5s";sc.style.opacity="0";
+  setTimeout(()=>{
+    sc.classList.add("hidden");sc.style.opacity="";
+    document.getElementById("archive-grid").innerHTML="";
+    document.getElementById("cipher-text").textContent="[ РАСШИФРОВКА... ]";
+    document.getElementById("cipher-hint").textContent="";
+    document.getElementById("main-screen").classList.remove("hidden");
+    document.getElementById("password-input").value="";
+  },500);
+}
+
+// BOOT
 const LINES=[
   "INITIALIZING SECURE KERNEL...","LOADING ENCRYPTED MODULES...",
   "CHECKING INTEGRITY: [████████████] 100%","ESTABLISHING SECURE CHANNEL...",
@@ -218,28 +283,28 @@ const LINES=[
   "DECRYPTING HEADER... DONE","AUTHORIZATION REQUIRED FOR FULL ACCESS",
   "","> SYSTEM READY. AWAITING CREDENTIALS."
 ];
-let bi=0;
-const bootEl=document.getElementById("boot-lines");
-const bootSc=document.getElementById("boot-screen");
-const mainSc=document.getElementById("main-screen");
-function typeLine(text,cb){
-  let i=0;const line=document.createElement("div");bootEl.appendChild(line);
+let _bi=0;
+const _bootEl=document.getElementById("boot-lines");
+const _bootSc=document.getElementById("boot-screen");
+const _mainSc=document.getElementById("main-screen");
+
+function _typeLine(text,cb){
+  let i=0;const line=document.createElement("div");_bootEl.appendChild(line);
   if(!text){line.innerHTML="&nbsp;";setTimeout(cb,80);return;}
   const t=setInterval(()=>{line.textContent+=text[i++];if(i>=text.length){clearInterval(t);setTimeout(cb,55);}},20);
 }
-function runBoot(){
-  if(bi<LINES.length){typeLine(LINES[bi++],()=>{bootEl.scrollTop=bootEl.scrollHeight;runBoot();});}
-  else{setTimeout(()=>{bootSc.style.transition="opacity .6s";bootSc.style.opacity="0";
-    setTimeout(()=>{bootSc.style.display="none";mainSc.classList.remove("hidden");startParticles();startClock();},600);},500);}
+function _runBoot(){
+  if(_bi<LINES.length){_typeLine(LINES[_bi++],()=>{_bootEl.scrollTop=_bootEl.scrollHeight;_runBoot();});}
+  else{setTimeout(()=>{_bootSc.style.transition="opacity .6s";_bootSc.style.opacity="0";
+    setTimeout(()=>{_bootSc.style.display="none";_mainSc.classList.remove("hidden");_startParticles();_startClock();},600);},500);}
 }
-document.addEventListener("DOMContentLoaded",runBoot);
 
-function startClock(){
+function _startClock(){
   const el=document.getElementById("clock");
   setInterval(()=>{const n=new Date();el.textContent="TIME: "+n.toTimeString().slice(0,8);},1000);
 }
 
-function startParticles(){
+function _startParticles(){
   const cv=document.getElementById("particles"),cx=cv.getContext("2d");
   function resize(){cv.width=innerWidth;cv.height=innerHeight;}resize();addEventListener("resize",resize);
   const C=65,COLS=["#00ffe7","#ff0033","#39ff14","#ff8c00"];
@@ -250,8 +315,7 @@ function startParticles(){
     cx.clearRect(0,0,cv.width,cv.height);
     for(let i=0;i<C;i++)for(let j=i+1;j<C;j++){
       const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,d=Math.hypot(dx,dy);
-      if(d<115){cx.beginPath();cx.strokeStyle=`rgba(0,255,231,${(.11*(1-d/115)).toFixed(3)})`;
-        cx.lineWidth=.4;cx.moveTo(ps[i].x,ps[i].y);cx.lineTo(ps[j].x,ps[j].y);cx.stroke();}
+      if(d<115){cx.beginPath();cx.strokeStyle=`rgba(0,255,231,${(.11*(1-d/115)).toFixed(3)})`;cx.lineWidth=.4;cx.moveTo(ps[i].x,ps[i].y);cx.lineTo(ps[j].x,ps[j].y);cx.stroke();}
     }
     ps.forEach(p=>{cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
       cx.fillStyle=p.col+Math.round(p.a*255).toString(16).padStart(2,"0");cx.fill();
@@ -261,96 +325,17 @@ function startParticles(){
   }draw();
 }
 
-// ── PASSWORD + DECRYPT ──
-let attempts=0;
-let blocked=false;
-
-async function checkPassword(){
-  if(blocked)return;
-  const val=document.getElementById("password-input").value.trim();
-  const err=document.getElementById("error-msg");
-  const btn=document.getElementById("enter-btn");
-  if(!val)return;
-  btn.disabled=true;
-  btn.querySelector("span").textContent="...";
-  try{
-    const data=await decryptArchive(val);
-    err.classList.add("hidden");
-    renderArchive(data);
-    showAccess();
-  }catch(e){
-    attempts++;
-    err.classList.remove("hidden");
-    err.style.animation="none";
-    requestAnimationFrame(()=>{err.style.animation="";});
-    document.getElementById("password-input").value="";
-    if(attempts>=15){
-      blocked=true;
-      err.textContent="⛔ СИСТЕМА ЗАБЛОКИРОВАНА НА 1 ЧАС";
-      btn.style.opacity=".3";
-      setTimeout(()=>{blocked=false;attempts=0;btn.style.opacity="";err.textContent="⛔ ДОСТУП ЗАПРЕЩЁН — НЕВЕРНЫЙ КОД";},3600000);
-    }
-  }
-  btn.disabled=false;
-  btn.querySelector("span").textContent="ВОЙТИ";
-}
+document.addEventListener("DOMContentLoaded",_runBoot);
 document.addEventListener("keydown",e=>{
-  if(e.key==="Enter"&&document.activeElement===document.getElementById("password-input"))checkPassword();
+  if(e.key==="Enter"&&document.activeElement===document.getElementById("password-input"))_check();
 });
 
-function renderArchive(data){
-  // Cipher
-  document.getElementById("cipher-text").innerHTML=data.cipher.replace(/\n/g,"<br>");
-  document.getElementById("cipher-hint").textContent=data.cipher_hint;
-  // Cards
-  const grid=document.getElementById("archive-grid");
-  grid.innerHTML="";
-  data.cards.forEach((c,i)=>{
-    const delays=[.1,.25,.4,.55,.7,.85];
-    const card=document.createElement("div");
-    card.className="archive-card";
-    card.style.cssText=`--d:${delays[i]||.1}s;opacity:0;animation:cardIn .5s ${delays[i]||.1}s forwards`;
-    card.innerHTML=`<div class="card-lbl">${c.lbl}</div><div class="card-ttl">${c.ttl}</div><div class="card-txt">${c.txt}</div><div class="card-stamp">${c.stamp}</div>`;
-    grid.appendChild(card);
-  });
-}
+// Единственные публичные методы — только для кнопок в HTML
+window._chk=_check;
+window._out=_logout;
 
-function showAccess(){
-  mainSc.classList.add("hidden");
-  const sc=document.getElementById("access-screen");
-  sc.classList.remove("hidden");sc.style.opacity="0";sc.style.transition="opacity .7s";
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{sc.style.opacity="1";}));
-  startTimer();
-}
-
-function startTimer(){
-  const deadline=new Date("2026-06-16T13:16:00Z").getTime();
-  const el=document.getElementById("timer-display");
-  const lbl=document.getElementById("timer-label");
-  function update(){
-    const diff=deadline-Date.now();
-    if(diff<=0){el.textContent="00:00:00:00";el.style.color="#555";el.style.textShadow="none";lbl.textContent="▸ ВРЕМЯ ИСТЕКЛО";return;}
-    const days=Math.floor(diff/(1000*60*60*24));
-    const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-    const mins=Math.floor((diff%(1000*60*60))/(1000*60));
-    const secs=Math.floor((diff%(1000*60))/1000);
-    el.textContent=String(days).padStart(2,"0")+":"+String(hours).padStart(2,"0")+":"+String(mins).padStart(2,"0")+":"+String(secs).padStart(2,"0");
-    setTimeout(update,1000);
-  }update();
-}
-
-function logout(){
-  const sc=document.getElementById("access-screen");
-  sc.style.transition="opacity .5s";sc.style.opacity="0";
-  setTimeout(()=>{
-    sc.classList.add("hidden");sc.style.opacity="";
-    document.getElementById("archive-grid").innerHTML="";
-    document.getElementById("cipher-text").textContent="[ РАСШИФРОВКА... ]";
-    document.getElementById("cipher-hint").textContent="";
-    mainSc.classList.remove("hidden");
-    document.getElementById("password-input").value="";
-  },500);
-}
+// Всё остальное недоступно из консоли
+})();
 </script>
 </body>
 </html>
