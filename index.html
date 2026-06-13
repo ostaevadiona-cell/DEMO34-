@@ -284,11 +284,11 @@ async function checkPassword(){
     err.style.animation="none";
     requestAnimationFrame(()=>{err.style.animation="";});
     document.getElementById("password-input").value="";
-    if(attempts>=5){
+    if(attempts>=15){
       blocked=true;
-      err.textContent="⛔ СИСТЕМА ЗАБЛОКИРОВАНА НА 60 СЕК";
+      err.textContent="⛔ СИСТЕМА ЗАБЛОКИРОВАНА НА 1 ЧАС";
       btn.style.opacity=".3";
-      setTimeout(()=>{blocked=false;attempts=0;btn.style.opacity="";err.textContent="⛔ ДОСТУП ЗАПРЕЩЁН — НЕВЕРНЫЙ КОД";},60000);
+      setTimeout(()=>{blocked=false;attempts=0;btn.style.opacity="";err.textContent="⛔ ДОСТУП ЗАПРЕЩЁН — НЕВЕРНЫЙ КОД";},3600000);
     }
   }
   btn.disabled=false;
