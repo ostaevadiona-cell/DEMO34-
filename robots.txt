@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /DEMO34-/
-
-User-agent: Googlebot
-Disallow: /DEMO34-/
-
-User-agent: Yandexbot
-Disallow: /DEMO34-/
