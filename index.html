@@ -351,7 +351,7 @@ const _p1c="DPf5G78ycXkqQX3BC2EsmSNDHqMUWw==";
 const _inv=[{"id": "INV-001", "codename": "ЛИЗУНЧ", "status": "АКТИВЕН", "progress": "34%", "last_seen": "16.06 · 03:47"}, {"id": "INV-002", "codename": "RISHKA", "status": "АКТИВЕН", "progress": "12%", "last_seen": "16.06 · 11:22"}, {"id": "INV-003", "codename": "SM_TK", "status": "АКТИВЕН", "progress": "67%", "last_seen": "16.06 · 09:15"}, {"id": "INV-004", "codename": "RARI", "status": "АКТИВЕН", "progress": "8%", "last_seen": "15.06 · 22:30"}, {"id": "INV-005", "codename": "КАМБОЛА", "status": "АКТИВЕН", "progress": "91%", "last_seen": "16.06 · 14:01"}, {"id": "INV-006", "codename": "DEMO34", "status": "ОСОБЫЙ", "progress": "???", "last_seen": "[REDACTED]"}, {"id": "INV-007", "codename": "ВЕЛОНА", "status": "АКТИВЕН", "progress": "23%", "last_seen": "15.06 · 18:44"}, {"id": "INV-008", "codename": "SLAY4", "status": "АКТИВЕН", "progress": "55%", "last_seen": "16.06 · 07:33"}];
 
 let _validated=false,_attempts=0,_blocked=false,_gdata=null;
-let _puzzleSolved=[false];
+let _puzzleSolved=[false,false];
 
 // Anti-copy
 document.addEventListener("contextmenu",e=>e.preventDefault());
@@ -435,6 +435,28 @@ function _renderPuzzles(){
           "<div class='pzl-solved-label'>РЕШЕНО</div>"+
           "<div class='pzl-solved-num'>УЛИКА #001 · ЗАСЕКРЕЧЕНО</div>"+
         "</div>";
+    } else if(i===1&&_puzzleSolved[0]&&!_puzzleSolved[1]){
+      card.className="pzl-card open";
+      card.innerHTML=
+        "<div class='pzl-num'>ФРАГМЕНТ · 02 / 11</div>"+
+        "<div class='pzl-content'>"+
+          "<div class='pzl-title'>// УЛИКА #002 //</div>"+
+          "<div class='pzl-text'>Он любил молодую женщину с гладким лицом, сидящую вполоборота держащую на руках белого горностая. Оба не смотрели в сторону зрителя.</div>"+
+          "<div class='pzl-inp-row'>"+
+            "<input type='text' class='pzl-inp' id='pzl-inp-1' placeholder='ответ...' maxlength='30' autocomplete='off'/>"+
+            "<button class='pzl-submit-btn' onclick='window._pzlCheck(1)'>→</button>"+
+          "</div>"+
+          "<div class='pzl-err hidden' id='pzl-err-1'>⛔ НЕВЕРНО</div>"+
+        "</div>";
+    } else if(i===1&&_puzzleSolved[0]&&_puzzleSolved[1]){
+      card.className="pzl-card solved";
+      card.innerHTML=
+        "<div class='pzl-num'>ФРАГМЕНТ · 02 / 11</div>"+
+        "<div class='pzl-solved-content'>"+
+          "<div class='pzl-check'>✔</div>"+
+          "<div class='pzl-solved-label'>РЕШЕНО</div>"+
+          "<div class='pzl-solved-num'>УЛИКА #002 · ЗАСЕКРЕЧЕНО</div>"+
+        "</div>";
     } else {
       card.className="pzl-card locked";
       card.setAttribute("data-idx",i);
@@ -447,9 +469,11 @@ function _renderPuzzles(){
     card.style.cssText=(card.style.cssText||"")+"opacity:0;animation:cardIn .4s "+(0.04*i)+"s forwards";
     grid.appendChild(card);
   }
-  // Enter key for puzzle input
+  // Enter key for puzzle inputs
   const inp=document.getElementById("pzl-inp-0");
   if(inp)inp.addEventListener("keydown",e=>{if(e.key==="Enter")window._pzlCheck(0);});
+  const inp1=document.getElementById("pzl-inp-1");
+  if(inp1)inp1.addEventListener("keydown",e=>{if(e.key==="Enter")window._pzlCheck(1);});
 }
 
 function _showLockedAlert(idx){
@@ -467,6 +491,24 @@ window.closeAlert=closeAlert;
 function _b2b(b64){const bin=atob(b64);const b=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)b[i]=bin.charCodeAt(i);return b;}
 
 async function _pzlCheck(idx){
+  if(idx===1){
+    const inp=document.getElementById("pzl-inp-1");
+    const err=document.getElementById("pzl-err-1");
+    if(!inp)return;
+    const val=inp.value.trim().toUpperCase();
+    if(!val)return;
+    if(val==="ЛЕОНАРДО"||val==="LEONARDO"){
+      _puzzleSolved[1]=true;
+      const grid=document.getElementById("puzzle-grid");
+      if(grid){grid.innerHTML="";}
+      _renderPuzzles();
+    } else {
+      err.classList.remove("hidden");err.style.animation="none";
+      requestAnimationFrame(()=>{err.style.animation="";});
+      inp.value="";
+    }
+    return;
+  }
   if(idx!==0)return;
   const inp=document.getElementById("pzl-inp-0");
   const err=document.getElementById("pzl-err-0");
