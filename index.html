@@ -673,8 +673,21 @@
 
 <!-- FINAL -->
 <div id="final-screen" class="hidden">
-  <div class="final-date" id="final-date"></div>
-  <div class="final-sub">// ДАТА РАСКРЫТА //</div>
+  <canvas id="matrix-canvas" style="position:fixed;inset:0;z-index:0;opacity:0;transition:opacity 1.5s;pointer-events:none;"></canvas>
+  <div class="final-date" id="final-date" style="position:relative;z-index:2;"></div>
+  <div class="final-sub" style="position:relative;z-index:2;">// ДАТА РАСКРЫТА //</div>
+
+  <!-- VIDEO BLOCK -->
+  <div style="margin-top:48px;text-align:center;position:relative;z-index:2;">
+    <div id="video-warning-label" style="font-family:var(--orb);font-size:clamp(11px,3.5vw,15px);letter-spacing:.35em;color:#ff0033;text-shadow:0 0 18px #ff0033,0 0 40px #ff003366;margin-bottom:18px;animation:gq-main-glitch 3.7s infinite;">⚠ НЕ ВКЛЮЧАТЬ ⚠</div>
+    <div style="position:relative;display:inline-block;max-width:480px;width:100%;border:1px solid #ff003344;box-shadow:0 0 30px #ff003322,inset 0 0 20px #00000088;">
+      <video id="forbidden-video" src="demo34.mp4" controls playsinline
+        style="width:100%;display:block;filter:contrast(1.1) saturate(0.7) brightness(0.85);background:#000;">
+      </video>
+      <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.13) 0px,rgba(0,0,0,.13) 1px,transparent 1px,transparent 3px);"></div>
+    </div>
+    <div style="margin-top:10px;font-family:var(--orb);font-size:9px;letter-spacing:.2em;color:rgba(255,0,51,.35);">// ФАЙЛ ЗАСЕКРЕЧЕН · ДОСТУП ЗАПРЕЩЁН //</div>
+  </div>
 </div>
 
 <script>
@@ -1193,7 +1206,7 @@ function _showFinal(){
   const sc=document.getElementById("final-screen");
   document.getElementById("final-date").textContent=_dat.phase2.final_date;
   sc.classList.remove("hidden");sc.style.opacity="0";sc.style.transition="opacity 1.2s";
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{sc.style.opacity="1";}));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{sc.style.opacity="1";_startMatrix();}));
 }
 
 function _logout(){
@@ -1281,6 +1294,33 @@ function _prt(){
   }draw();
 }
 
+// MATRIX RAIN
+function _startMatrix(){
+  const cv=document.getElementById("matrix-canvas");
+  if(!cv)return;
+  cv.style.opacity="0.38";
+  const cx=cv.getContext("2d");
+  function rsz(){cv.width=innerWidth;cv.height=innerHeight;}
+  rsz();addEventListener("resize",rsz);
+  const cols=Math.floor(innerWidth/16)||50;
+  const drops=Array.from({length:cols},()=>Math.random()*-100|0);
+  const chars="アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF#@!%&*<>[]{}";
+  function draw(){
+    cx.fillStyle="rgba(0,0,0,0.05)";
+    cx.fillRect(0,0,cv.width,cv.height);
+    cx.font="14px monospace";
+    for(let i=0;i<cols;i++){
+      const bright=Math.random()>.97;
+      cx.fillStyle=bright?"#fff":"#00ff41";
+      cx.shadowColor="#00ff41";
+      cx.shadowBlur=bright?8:0;
+      cx.fillText(chars[Math.random()*chars.length|0],i*16,drops[i]*16);
+      if(drops[i]*16>cv.height&&Math.random()>.975)drops[i]=0;
+      drops[i]++;
+    }
+  }
+  setInterval(draw,45);
+}
 document.addEventListener("DOMContentLoaded",_rBoot);
 window._chk=_check;
 window._out=_logout;
