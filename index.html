@@ -475,8 +475,17 @@
       .p3-item{flex-direction:column;align-items:flex-start}
       .p3-item-inp{width:100%}
       .nav-tab{padding:12px 10px;font-size:9px;}
+      .pzl-card{min-width:0;width:100%;box-sizing:border-box;}
+      .pzl-open-text{font-size:12px;word-break:break-word;overflow-wrap:anywhere;}
+      .pzl-inp-row{flex-wrap:nowrap;width:100%;box-sizing:border-box;}
+      .pzl-inp{min-width:0;font-size:12px;}
+      .tab-content{padding:16px 10px;box-sizing:border-box;width:100%;}
+      .pzl-grid{width:100%;box-sizing:border-box;padding:0;}
     }
-    @media(max-width:400px){.inv-grid{grid-template-columns:1fr}}
+    @media(max-width:400px){
+      .inv-grid{grid-template-columns:1fr}
+      .pzl-open-num,.pzl-num{font-size:7px;letter-spacing:.15em;}
+    }
   </style>
 </head>
 <body>
@@ -980,10 +989,10 @@ function _buildPzl(){
   }
   // Final clue text after all 10 cards
   const finalDiv=document.createElement("div");
-  finalDiv.style.cssText="grid-column:1/-1;text-align:center;margin-top:32px;padding:28px 20px;border:1px solid var(--cyan);border-image:linear-gradient(90deg,transparent,var(--cyan),transparent)1;";
+  finalDiv.style.cssText="grid-column:1/-1;text-align:center;margin-top:32px;padding:28px 12px;border:1px solid var(--cyan);border-image:linear-gradient(90deg,transparent,var(--cyan),transparent)1;box-sizing:border-box;width:100%;overflow-wrap:anywhere;word-break:break-word;";
   finalDiv.innerHTML=
     "<div style='font-family:var(--orb);font-size:11px;letter-spacing:.2em;color:var(--cyan);opacity:.6;margin-bottom:14px;'>// ФИНАЛЬНЫЙ КОД //</div>"+
-    "<div style='font-family:var(--orb);font-size:clamp(14px,3.5vw,20px);color:var(--red);letter-spacing:.12em;text-shadow:0 0 12px #ff003388;line-height:2.2;'>6(3)&nbsp;&nbsp;2(1)&nbsp;&nbsp;5&nbsp;&nbsp;10(5)&nbsp;&nbsp;3(7)&nbsp;&nbsp;7(10)&nbsp;&nbsp;4(1)&nbsp;&nbsp;8(3)&nbsp;&nbsp;1(7)&nbsp;&nbsp;9(1)</div>"+
+    "<div style='font-family:var(--orb);font-size:clamp(13px,4vw,20px);color:var(--red);letter-spacing:.08em;text-shadow:0 0 12px #ff003388;line-height:2.4;word-break:break-word;overflow-wrap:anywhere;'>6(3)&nbsp; 2(1)&nbsp; 5&nbsp; 10(5)<br>3(7)&nbsp; 7(10)&nbsp; 4(1)<br>8(3)&nbsp; 1(7)&nbsp; 9(1)</div>"+
     "<div style='margin-top:22px;'>"+
       "<a href='https://forms.gle/wFwhXQHi7SNDXagq8' target='_blank' style='font-family:var(--orb);font-size:12px;letter-spacing:.18em;color:var(--cyan);text-decoration:none;border:1px solid var(--cyan);padding:10px 24px;display:inline-block;transition:.3s;' onmouseover=\"this.style.background='rgba(0,229,255,.1)'\" onmouseout=\"this.style.background='transparent'\">▸ ВВЕСТИ ФИНАЛЬНЫЙ ОТВЕТ</a>"+
     "</div>";
